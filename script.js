@@ -161,12 +161,7 @@ let score = 0;
 // Start a new round with a topic
 function startTopic(key, customQuestions) {
     // Use vocabDB, grammarDB, conjugationsDB for topic lookup
-    let topicArr = null;
-    if (key && vocabDB[key]) topicArr = vocabDB[key];
-    else if (key && grammarDB[key]) topicArr = grammarDB[key];
-    else if (key && conjugationsDB[key]) topicArr = conjugationsDB[key];
-    else if (customQuestions) topicArr = customQuestions;
-    else topicArr = [];
+    let topicArr = [];
 
     topicKey = key;
     originalTopic = topicArr;
