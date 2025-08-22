@@ -140,13 +140,14 @@ reg_ir: [
 // ===========================
 // QUIZ ENGINE (unchanged UX)
 // ===========================
+
 function shuffle(array) {
-  const arr = [...array];
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
 }
 
 // Quiz state
@@ -159,171 +160,202 @@ let score = 0;
 
 // Start a new round with a topic
 function startTopic(key, customQuestions) {
-  let topicArr = null;
+    // Use vocabDB, grammarDB, conjugationsDB for topic lookup
+    let topicArr = null;
+    if (key && vocabDB[key]) topicArr = vocabDB[key];
+    else if (key && grammarDB[key]) topicArr = grammarDB[key];
+    else if (key && conjugationsDB[key]) topicArr = conjugationsDB[key];
+    else if (customQuestions) topicArr = customQuestions;
+    else topicArr = [];
 
-  topicArr = [];
-
-  topicKey = key;
-  originalTopic = topicArr;
-  questions = shuffle(topicArr).slice(0, Math.min(10, topicArr.length));
-  wrongQuestions = [];
-  currentQuestion = 0;
-  score = 0;
-  showSelect(false);
-  setResult('');
-  loadQuestion();
+    topicKey = key;
+    originalTopic = topicArr;
+    questions = shuffle(topicArr).slice(0, Math.min(10, topicArr.length));
+    wrongQuestions = []; // Ensure mistakes are cleared at the start
+    currentQuestion = 0;
+    score = 0;
+    showSelect(false);
+    setResult('');
+    loadQuestion();
 }
 
 // Show/hide topic selector
 function showSelect(show) {
-  const optionMenu = document.getElementById('select_topic');
-  const selectButton = document.getElementsByClassName('open-select')[0];
-  const quizContainer = document.getElementsByClassName('quiz-container')[0];
-  if (show) {
-    optionMenu.style.display = 'flex';
-    selectButton.style.display = 'none';
-    if (quizContainer) quizContainer.style.display = 'none';
-  } else {
-    optionMenu.style.display = 'none';
-    selectButton.style.display = 'block';
-    if (quizContainer) quizContainer.style.display = 'block';
-  }
+    const optionMenu = document.getElementById('select_topic');
+    const selectButton = document.getElementsByClassName('open-select')[0];
+    const quizContainer = document.getElementsByClassName('quiz-container')[0];
+    if (show) {
+        optionMenu.style.display = 'flex';
+        selectButton.style.display = 'none';
+        if (quizContainer) quizContainer.style.display = 'none';
+    } else {
+        optionMenu.style.display = 'none';
+        selectButton.style.display = 'block';
+        if (quizContainer) quizContainer.style.display = 'block';
+    }
 }
 
 // Set result message
 function setResult(msg, color = 'black') {
-  const resultElement = document.getElementById("result");
-  resultElement.textContent = msg;
-  resultElement.style.color = color;
+    const resultElement = document.getElementById("result");
+    resultElement.textContent = msg;
+    resultElement.style.color = color;
 }
 
 // Load current question or show final score
 function loadQuestion() {
-  const headingone = document.getElementsByTagName('h1')[0];
-  const questionElement = document.getElementById("question");
-  const optionsContainer = document.getElementById("options-container");
-  const resultElement = document.getElementById("result");
+    const headingone = document.getElementsByTagName('h1')[0];
+    const questionElement = document.getElementById("question");
+    const optionsContainer = document.getElementById("options-container");
+    const resultElement = document.getElementById("result");
 
-  headingone.style.display = 'none';
+    headingone.style.display = 'none';
 
-  if (currentQuestion < questions.length) {
-    const currentQuestionData = questions[currentQuestion];
+    if (currentQuestion < questions.length) {
+        const currentQuestionData = questions[currentQuestion];
 
-    questionElement.textContent = currentQuestionData.question;
-    setResult("");
+        questionElement.textContent = currentQuestionData.question;
+        setResult("");
 
-    optionsContainer.innerHTML = "";
+        optionsContainer.innerHTML = "";
 
-    // Free-text input only
-    const input = document.createElement("input");
-    input.type = "text";
-    input.autofocus = true;
-    input.id = "answer-input";
+        // Free-text input only
+        const input = document.createElement("input");
+        input.type = "text";
+        input.autofocus = true;
+        input.id = "answer-input";
 
-    input.addEventListener("keypress", function(event) {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        submitButton.click();
-      }
-    });
+        input.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                submitButton.click();
+            }
+        });
 
-    const submitButton = document.createElement("button");
-    submitButton.textContent = "Send";
-    submitButton.id = "submit-button";
-    submitButton.addEventListener("click", () => {
-      checkInputAnswer(input.value, currentQuestionData.answers, optionsContainer, input, submitButton);
-    });
+        const submitButton = document.createElement("button");
+        submitButton.textContent = "Send";
+        submitButton.id = "submit-button";
+        submitButton.addEventListener("click", () => {
+            checkInputAnswer(input.value, currentQuestionData.answers, optionsContainer, input, submitButton);
+        });
 
-    optionsContainer.appendChild(input);
-    optionsContainer.appendChild(submitButton);
+        optionsContainer.appendChild(input);
+        optionsContainer.appendChild(submitButton);
 
-  } else {
-    // Final score
-    questionElement.textContent = "¡Test completado!";
-    optionsContainer.innerHTML = "";
-    resultElement.innerHTML =
-      "Score: " + score + " / " + questions.length +
-      '.<br><br>Total: ' + parseInt(score * 10 / questions.length) + ' sobre 10.';
+    } else {
+        // Final score
+        questionElement.textContent = "Test completado!";
+        optionsContainer.innerHTML = "";
+        resultElement.innerHTML = "Score: " + score + " out of " + questions.length + '.<br> <br> Total: ' + parseInt(score * 10 / questions.length) + ' sobre 10.';
 
-    if (wrongQuestions.length > 0) {
-      const reviewButton = document.createElement("button");
-      reviewButton.textContent = "Review mistakes";
-      optionsContainer.appendChild(reviewButton);
-      reviewButton.addEventListener("click", () => {
-        const reviewSet = shuffle(wrongQuestions).slice(0, Math.min(10, wrongQuestions.length));
-        startTopic(null, reviewSet);
-      });
+        // Only show review mistakes button if there are mistakes
+        if (wrongQuestions.length > 0) {
+            const reviewButton = document.createElement("button");
+            reviewButton.textContent = "Review mistakes";
+            optionsContainer.appendChild(reviewButton);
+            reviewButton.addEventListener("click", () => {
+                // Limit review round to max 10 questions
+                const reviewSet = shuffle(wrongQuestions).slice(0, Math.min(10, wrongQuestions.length));
+                startTopic(null, reviewSet);
+            });
+        }
+
+        // New round button
+        const newRoundButton = document.createElement("button");
+        newRoundButton.textContent = "New round";
+        optionsContainer.appendChild(newRoundButton);
+        newRoundButton.addEventListener("click", () => startTopic(topicKey, originalTopic));
+
+        // Choose another topic button
+        const chooseTopicButton = document.createElement("button");
+        chooseTopicButton.textContent = "Choose another topic";
+        optionsContainer.appendChild(chooseTopicButton);
+        chooseTopicButton.addEventListener("click", () => showSelect(true));
     }
-
-    const newRoundButton = document.createElement("button");
-    newRoundButton.textContent = "New round";
-    optionsContainer.appendChild(newRoundButton);
-    newRoundButton.addEventListener("click", () => startTopic(topicKey, originalTopic));
-
-    const chooseTopicButton = document.createElement("button");
-    chooseTopicButton.textContent = "Choose another topic";
-    optionsContainer.appendChild(chooseTopicButton);
-    chooseTopicButton.addEventListener("click", () => showSelect(true));
-  }
 }
 
-// Check answer with immediate correction + try-correct flow
+// Modified checkInputAnswer to prompt for correct answer if first attempt is wrong
 function checkInputAnswer(inputValue, correctAnswers, optionsContainer, inputElem, submitBtn) {
-  const normalized = inputValue.trim().toLowerCase();
-  if (correctAnswers.some(ans => normalized === ans.toLowerCase())) {
-    score++;
-    setResult("¡Bien!", "green");
-    currentQuestion++;
-    setTimeout(() => { loadQuestion(); }, 1200);
-  } else {
-    const q = questions[currentQuestion];
-    if (!wrongQuestions.includes(q)) wrongQuestions.push(q);
-    setResult("Try with: " + correctAnswers.join(", "), "orange");
+    if (correctAnswers.some(ans => inputValue.trim().toLowerCase() === ans.toLowerCase())) {
+        score++;
+        setResult("Yasss!", "green");
+        currentQuestion++;
+        setTimeout(() => {
+            loadQuestion();
+        }, 1500);
+    } else {
+        const q = questions[currentQuestion];
+        if (!wrongQuestions.includes(q)) {
+            wrongQuestions.push(q);
+        }
+        setResult("Try with: " + correctAnswers.join(", "), "orange");
+        // Only add mistake if not already present
 
-    if (inputElem && submitBtn) {
-      inputElem.disabled = true;
-      submitBtn.disabled = true;
+        // Remove previous input/button
+        if (inputElem && submitBtn) {
+            inputElem.disabled = true;
+            submitBtn.disabled = true;
+        }
+
+        // Prompt for correct answer
+        const tryAgainInput = document.createElement("input");
+        tryAgainInput.type = "text";
+        tryAgainInput.autofocus = true;
+        tryAgainInput.id = "try-again-input";
+
+        tryAgainInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                tryAgainBtn.click();
+            }
+        });
+
+        const tryAgainBtn = document.createElement("button");
+        tryAgainBtn.textContent = "Try correct answer";
+        tryAgainBtn.addEventListener("click", () => {
+            const tryValue = tryAgainInput.value;
+            if (correctAnswers.some(ans => tryValue.trim().toLowerCase() === ans.toLowerCase())) {
+                setResult("Correct! Good job!", "green");
+            } else {
+                setResult("Still not correct. Correct answers: " + correctAnswers.join(", "), "red");
+            }
+            currentQuestion++;
+            setTimeout(() => {
+                loadQuestion();
+            }, 3000);
+        });
+
+        optionsContainer.appendChild(document.createElement("br"));
+        optionsContainer.appendChild(tryAgainInput);
+        optionsContainer.appendChild(tryAgainBtn);
     }
-
-    const tryAgainInput = document.createElement("input");
-    tryAgainInput.type = "text";
-    tryAgainInput.autofocus = true;
-    tryAgainInput.id = "try-again-input";
-    tryAgainInput.addEventListener("keypress", function(event) {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        tryAgainBtn.click();
-      }
-    });
-
-    const tryAgainBtn = document.createElement("button");
-    tryAgainBtn.textContent = "Try correct answer";
-    tryAgainBtn.addEventListener("click", () => {
-      const tryValue = tryAgainInput.value.trim().toLowerCase();
-      if (correctAnswers.some(ans => tryValue === ans.toLowerCase())) {
-        setResult("Correct! Good job!", "green");
-      } else {
-        setResult("Still not correct. Correct answers: " + correctAnswers.join(", "), "red");
-      }
-      currentQuestion++;
-      setTimeout(() => { loadQuestion(); }, 2200);
-    });
-
-    optionsContainer.appendChild(document.createElement("br"));
-    optionsContainer.appendChild(tryAgainInput);
-    optionsContainer.appendChild(tryAgainBtn);
-  }
 }
 
-// Topic selection from HTML buttons (Spanish only)
+// Topic selection from HTML buttons
 window.theme_is = function(chosen) {
-  for (const key in spanishDB) {
-    if (spanishDB[key] === chosen) {
-      startTopic(key);
-      return;
+    // Try to find the topic key in all DBs
+    for (const key in vocabDB) {
+        if (vocabDB[key] === chosen) {
+            startTopic(key);
+            return;
+        }
     }
-  }
-  if (Array.isArray(chosen)) startTopic(null, chosen);
+    for (const key in grammarDB) {
+        if (grammarDB[key] === chosen) {
+            startTopic(key);
+            return;
+        }
+    }
+    for (const key in conjugationsDB) {
+        if (conjugationsDB[key] === chosen) {
+            startTopic(key);
+            return;
+        }
+    }
+    // If chosen is not found, fallback to original logic
+    if (Array.isArray(chosen)) {
+        startTopic(null, chosen);
+    }
 };
 
 // Open/close select menu
