@@ -161,9 +161,7 @@ let score = 0;
 function startTopic(key, customQuestions) {
   let topicArr = null;
 
-  if (key && spanishDB[key]) topicArr = spanishDB[key];
-  else if (customQuestions) topicArr = customQuestions;
-  else topicArr = [];
+  topicArr = [];
 
   topicKey = key;
   originalTopic = topicArr;
