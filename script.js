@@ -2,96 +2,139 @@
 // SPANISH QUESTION BANK ONLY
 // ===========================
 const spanishDB = {
-  // --- SER vs ESTAR (simple prompts; accept with/without pronoun) ---
-  ser_estar: [
-    // SER (identity/origin/time/traits)
-    { question: "I am (ser)", answers: ["yo soy", "soy"] },
-    { question: "You are (ser, informal)", answers: ["tú eres", "tu eres", "eres"] },
-    { question: "He is (ser)", answers: ["él es", "el es", "es"] },
-    { question: "She is (ser)", answers: ["ella es", "es"] },
-    { question: "We are (ser)", answers: ["nosotros somos", "somos"] },
-    { question: "You all are (ser, Spain)", answers: ["vosotros sois", "sois"] },
-    { question: "They are (ser)", answers: ["ellos son", "son"] },
 
-    // ESTAR (states/locations)
-    { question: "I am (estar)", answers: ["yo estoy", "estoy"] },
-    { question: "You are (estar, informal)", answers: ["tú estás", "tu estas", "estás", "estas"] },
-    { question: "He is (estar)", answers: ["él está", "el esta", "está", "esta"] },
-    { question: "She is (estar)", answers: ["ella está", "esta", "está"] },
-    { question: "We are (estar)", answers: ["nosotros estamos", "estamos"] },
-    { question: "You all are (estar, Spain)", answers: ["vosotros estáis", "vosotros estais", "estáis", "estais"] },
-    { question: "They are (estar)", answers: ["ellos están", "estan", "están"] },
+// --- REGULAR INFINITIVES (AR / ER / IR) ---
+  
+reg_inf: [
+  // --- AR VERBS ---
+  { question: "to dance", answers: ["bailar"] },
+  { question: "to finish", answers: ["terminar"] },
+  { question: "to study", answers: ["estudiar"] },
+  { question: "to work", answers: ["trabajar"] },
+  { question: "to speak / talk", answers: ["hablar"] },
+  { question: "to listen", answers: ["escuchar"] },
+  { question: "to look / watch", answers: ["mirar"] },
+  { question: "to need", answers: ["necesitar"] },
+  { question: "to walk", answers: ["caminar"] },
+  { question: "to buy", answers: ["comprar"] },
 
-    // Mini sentence drills (ser)
-    { question: "We are teachers (ser)", answers: ["nosotros somos profesores", "somos profesores"] },
-    { question: "She is from Madrid (ser)", answers: ["ella es de madrid", "es de madrid"] },
-    { question: "Today is Monday (ser)", answers: ["hoy es lunes"] },
-    // Mini sentence drills (estar)
-    { question: "I am at home (estar)", answers: ["yo estoy en casa", "estoy en casa"] },
-    { question: "They are tired (estar)", answers: ["ellos están cansados", "ellos estan cansados", "están cansados", "estan cansados"] },
-    { question: "We are happy (estar)", answers: ["nosotros estamos felices", "estamos felices"] },
-  ],
+  // --- ER VERBS ---
+  { question: "to eat", answers: ["comer"] },
+  { question: "to learn", answers: ["aprender"] },
+  { question: "to drink", answers: ["beber"] },
+  { question: "to run", answers: ["correr"] },
+  { question: "to sell", answers: ["vender"] },
+  { question: "to believe", answers: ["creer"] },
+  { question: "to promise", answers: ["prometer"] },
+  { question: "to understand", answers: ["comprender"] },
+  { question: "to read", answers: ["leer"] },
+  { question: "to sweep", answers: ["barrer"] },
 
-  // --- REGULAR -AR PRESENT (hablar, estudiar, trabajar) ---
-  reg_ar: [
-    // HABLAR
-    { question: "I speak (hablar)", answers: ["yo hablo", "hablo"] },
-    { question: "You speak (hablar, informal)", answers: ["tú hablas", "tu hablas", "hablas"] },
-    { question: "He speaks (hablar)", answers: ["él habla", "el habla", "habla"] },
-    { question: "We speak (hablar)", answers: ["nosotros hablamos", "hablamos"] },
-    { question: "You all speak (Spain, hablar)", answers: ["vosotros habláis", "vosotros hablais", "habláis", "hablais"] },
-    { question: "They speak (hablar)", answers: ["ellos hablan", "hablan"] },
+  // --- IR VERBS ---
+  { question: "to live", answers: ["vivir"] },
+  { question: "to write", answers: ["escribir"] },
+  { question: "to open", answers: ["abrir"] },
+  { question: "to decide", answers: ["decidir"] },
+  { question: "to receive", answers: ["recibir"] },
+  { question: "to divide / share", answers: ["compartir"] },
+  { question: "to describe", answers: ["describir"] },
+  { question: "to suffer", answers: ["sufrir"] },
+  { question: "to permit / allow", answers: ["permitir"] },
+  { question: "to attend", answers: ["asistir"] },
+],
 
-    // ESTUDIAR
-    { question: "I study (estudiar)", answers: ["yo estudio", "estudio"] },
-    { question: "You study (estudiar, informal)", answers: ["tú estudias", "tu estudias", "estudias"] },
-    { question: "She studies (estudiar)", answers: ["ella estudia", "estudia"] },
-    { question: "We study (estudiar)", answers: ["nosotros estudiamos", "estudiamos"] },
+  
+// --- REGULAR -AR PRESENT (hablar, estudiar, trabajar) ---
+reg_ar: [
+  // HABLAR
+  { question: "I speak", answers: ["yo hablo", "hablo"] },
+  { question: "You speak", answers: ["tú hablas", "tu hablas", "hablas"] },
+  { question: "He speaks", answers: ["él habla", "el habla", "habla"] },
+  { question: "She speaks", answers: ["ella habla", "habla"] },
+  { question: "We speak", answers: ["nosotros hablamos", "hablamos"] },
+  { question: "You all speak", answers: ["vosotros habláis", "vosotros hablais", "habláis", "hablais"] },
+  { question: "They speak", answers: ["ellos hablan", "hablan"] },
 
-    // TRABAJAR
-    { question: "I work (trabajar)", answers: ["yo trabajo", "trabajo"] },
-    { question: "You all work (Spain, trabajar)", answers: ["vosotros trabajáis", "vosotros trabajais", "trabajáis", "trabajais"] },
-  ],
+  // ESTUDIAR
+  { question: "I study", answers: ["yo estudio", "estudio"] },
+  { question: "You study", answers: ["tú estudias", "tu estudias", "estudias"] },
+  { question: "He studies", answers: ["él estudia", "el estudia", "estudia"] },
+  { question: "She studies", answers: ["ella estudia", "estudia"] },
+  { question: "We study", answers: ["nosotros estudiamos", "estudiamos"] },
+  { question: "You all study", answers: ["vosotros estudiáis", "vosotros estudiais", "estudiáis", "estudiais"] },
+  { question: "They study", answers: ["ellos estudian", "estudian"] },
 
-  // --- REGULAR -ER PRESENT (comer, aprender, beber) ---
-  reg_er: [
-    // COMER
-    { question: "I eat (comer)", answers: ["yo como", "como"] },
-    { question: "You eat (comer, informal)", answers: ["tú comes", "tu comes", "comes"] },
-    { question: "He eats (comer)", answers: ["él come", "el come", "come"] },
-    { question: "We eat (comer)", answers: ["nosotros comemos", "comemos"] },
-    { question: "You all eat (Spain, comer)", answers: ["vosotros coméis", "vosotros comeis", "coméis", "comeis"] },
-    { question: "They eat (comer)", answers: ["ellos comen", "comen"] },
+  // TRABAJAR
+  { question: "I work", answers: ["yo trabajo", "trabajo"] },
+  { question: "You work", answers: ["tú trabajas", "tu trabajas", "trabajas"] },
+  { question: "He works", answers: ["él trabaja", "el trabaja", "trabaja"] },
+  { question: "She works", answers: ["ella trabaja", "trabaja"] },
+  { question: "We work", answers: ["nosotros trabajamos", "trabajamos"] },
+  { question: "You all work", answers: ["vosotros trabajáis", "vosotros trabajais", "trabajáis", "trabajais"] },
+  { question: "They work", answers: ["ellos trabajan", "trabajan"] },
+],
 
-    // APRENDER
-    { question: "I learn (aprender)", answers: ["yo aprendo", "aprendo"] },
-    { question: "You learn (aprender, informal)", answers: ["tú aprendes", "tu aprendes", "aprendes"] },
-    { question: "We learn (aprender)", answers: ["nosotros aprendemos", "aprendemos"] },
+// --- REGULAR -ER PRESENT (comer, aprender, beber) ---
+reg_er: [
+  // COMER
+  { question: "I eat", answers: ["yo como", "como"] },
+  { question: "You eat", answers: ["tú comes", "tu comes", "comes"] },
+  { question: "He eats", answers: ["él come", "el come", "come"] },
+  { question: "She eats", answers: ["ella come", "come"] },
+  { question: "We eat", answers: ["nosotros comemos", "comemos"] },
+  { question: "You all eat", answers: ["vosotros coméis", "vosotros comeis", "coméis", "comeis"] },
+  { question: "They eat", answers: ["ellos comen", "comen"] },
 
-    // BEBER
-    { question: "She drinks (beber)", answers: ["ella bebe", "bebe"] },
-    { question: "You all drink (Spain, beber)", answers: ["vosotros bebéis", "vosotros bebeis", "bebéis", "bebeis"] },
-  ],
+  // APRENDER
+  { question: "I learn", answers: ["yo aprendo", "aprendo"] },
+  { question: "You learn", answers: ["tú aprendes", "tu aprendes", "aprendes"] },
+  { question: "He learns", answers: ["él aprende", "el aprende", "aprende"] },
+  { question: "She learns", answers: ["ella aprende", "aprende"] },
+  { question: "We learn", answers: ["nosotros aprendemos", "aprendemos"] },
+  { question: "You all learn", answers: ["vosotros aprendéis", "vosotros aprendeis", "aprendéis", "aprendeis"] },
+  { question: "They learn", answers: ["ellos aprenden", "aprenden"] },
 
-  // --- REGULAR -IR PRESENT (vivir, escribir, abrir) ---
-  reg_ir: [
-    // VIVIR
-    { question: "I live (vivir)", answers: ["yo vivo", "vivo"] },
-    { question: "You live (vivir, informal)", answers: ["tú vives", "tu vives", "vives"] },
-    { question: "He lives (vivir)", answers: ["él vive", "el vive", "vive"] },
-    { question: "We live (vivir)", answers: ["nosotros vivimos", "vivimos"] },
-    { question: "You all live (Spain, vivir)", answers: ["vosotros vivís", "vosotros vivis", "vivís", "vivis"] },
-    { question: "They live (vivir)", answers: ["ellos viven", "viven"] },
+  // BEBER
+  { question: "I drink", answers: ["yo bebo", "bebo"] },
+  { question: "You drink", answers: ["tú bebes", "tu bebes", "bebes"] },
+  { question: "He drinks", answers: ["él bebe", "el bebe", "bebe"] },
+  { question: "She drinks", answers: ["ella bebe", "bebe"] },
+  { question: "We drink", answers: ["nosotros bebemos", "bebemos"] },
+  { question: "You all drink", answers: ["vosotros bebéis", "vosotros bebeis", "bebéis", "bebeis"] },
+  { question: "They drink", answers: ["ellos beben", "beben"] },
+],
 
-    // ESCRIBIR
-    { question: "I write (escribir)", answers: ["yo escribo", "escribo"] },
-    { question: "You write (escribir, informal)", answers: ["tú escribes", "tu escribes", "escribes"] },
-    { question: "We write (escribir)", answers: ["nosotros escribimos", "escribimos"] },
+// --- REGULAR -IR PRESENT (vivir, escribir, abrir) ---
+reg_ir: [
+  // VIVIR
+  { question: "I live", answers: ["yo vivo", "vivo"] },
+  { question: "You live", answers: ["tú vives", "tu vives", "vives"] },
+  { question: "He lives", answers: ["él vive", "el vive", "vive"] },
+  { question: "She lives", answers: ["ella vive", "vive"] },
+  { question: "We live", answers: ["nosotros vivimos", "vivimos"] },
+  { question: "You all live", answers: ["vosotros vivís", "vosotros vivis", "vivís", "vivis"] },
+  { question: "They live", answers: ["ellos viven", "viven"] },
 
-    // ABRIR
-    { question: "She opens (abrir)", answers: ["ella abre", "abre"] },
-    { question: "You all open (Spain, abrir)", answers: ["vosotros abrís", "vosotros abris", "abrís", "abris"] },
-  ],
+  // ESCRIBIR
+  { question: "I write", answers: ["yo escribo", "escribo"] },
+  { question: "You write", answers: ["tú escribes", "tu escribes", "escribes"] },
+  { question: "He writes", answers: ["él escribe", "el escribe", "escribe"] },
+  { question: "She writes", answers: ["ella escribe", "escribe"] },
+  { question: "We write", answers: ["nosotros escribimos", "escribimos"] },
+  { question: "You all write", answers: ["vosotros escribís", "vosotros escribis", "escribís", "escribis"] },
+  { question: "They write", answers: ["ellos escriben", "escriben"] },
+
+  // ABRIR
+  { question: "I open", answers: ["yo abro", "abro"] },
+  { question: "You open", answers: ["tú abres", "tu abres", "abres"] },
+  { question: "He opens", answers: ["él abre", "el abre", "abre"] },
+  { question: "She opens", answers: ["ella abre", "abre"] },
+  { question: "We open", answers: ["nosotros abrimos", "abrimos"] },
+  { question: "You all open", answers: ["vosotros abrís", "vosotros abris", "abrís", "abris"] },
+  { question: "They open", answers: ["ellos abren", "abren"] },
+],
+
+
 };
 
 // ===========================
