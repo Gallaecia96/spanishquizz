@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spanish Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <button class="open-select" onclick="openSelect()">Select topic</button>
+
+  <section id="select_topic" aria-label="Topic selector">
+    <button class="close-select" onclick="closeSelect()">X</button>
+
+    <!-- ========= SPANISH ONLY ========= -->
+    <div class="option-block" id="spanish-section">
+      <h2>Español · Vocabulario</h2>
+    </div>
+    <div class="option-block" id="spanish-section">
+      <h2>Español · Gramática</h2>
+      <button onclick="theme_is(spanishDB.ser_estar)">Ser vs Estar</button>
+      <button onclick="theme_is(spanishDB.reg_ar)">Regular -AR (presente)</button>
+      <button onclick="theme_is(spanishDB.reg_er)">Regular -ER (presente)</button>
+      <button onclick="theme_is(spanishDB.reg_ir)">Regular -IR (presente)</button>
+    </div>
+    
+  </section>
+
+  <div class="quiz-container">
+    <h1>Spanish Quiz</h1>
+    <p id="question">Choose a topic to start…</p>
+    <div class="options" id="options-container"></div>
+    <p id="result"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
