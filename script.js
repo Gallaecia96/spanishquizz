@@ -133,6 +133,27 @@ reg_ir: [
   { question: "You all open", answers: ["vosotros abrís", "vosotros abris", "abrís", "abris"] },
   { question: "They open", answers: ["ellos abren", "abren"] },
 ],
+  l1_4: [
+        { question: “weather”, answers: [“tiempo”] },
+        { question: “area, zone”, answers: [“zona”, “área”, “area”] },
+        { question: “home”, answers: [“hogar”] },
+        { question: “bond”, answers: [“vínculo”] },
+        { question: “finances”, answers: [“finanzas] },
+        { question: “partner”, answers: [“pareja”] },
+        { question: “relationship”, answers: [“relación”] },
+        { question: “to break up”, answers: [“romper”] },
+        { question: “still”, answers: [“todavía”, “aún”, “aun”] },
+        { question: “place”, answers: [“lugar”, “sitio”] },
+        { question: “at least”, answers: [“por “lo menos] },
+        { question: “the usual”, answers: [“lo normal”] },
+        { question: “important”, answers: [“importante”] },
+        { question: “responsibility”, answers: [“responsabilidad”] },
+        { question: “shelter”, answers: [“refugio”] },
+        { question: “empty”, answers: [“vacío”, “vacía”] },
+        { question: “when”, answers: [“cuando”, “cuándo”] },
+        { question: “wide”, answers: [“amplio”, “amplia”] },
+        { question: “I dont care, I dont mind”, answers: [“me da igual”, “no me importa”, “me da lo mismo”] },
+    ],
 
 
 };
