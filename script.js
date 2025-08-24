@@ -152,7 +152,6 @@ reg_ir: [
         { question: “empty”, answers: [“vacío”, “vacía”] },
         { question: “when”, answers: [“cuando”, “cuándo”] },
         { question: “wide”, answers: [“amplio”, “amplia”] },
-        { question: “I dont care, I dont mind”, answers: [“me da igual”, “no me importa”, “me da lo mismo”] },
     ],
 
 
