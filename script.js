@@ -142,7 +142,7 @@ reg_ir: [
         { question: "finances", answers: ["finanzas"] },
         { question: "partner", answers: ["pareja"] },
         { question: "relationship", answers: ["relación"] },
-        { question: "to break up", answers: [“romper”] },
+        { question: "to break up", answers: ["romper"] },
         { question: "still (time)", answers: ["todavía", "aún", "todavia", "aun"] },
         { question: "place", answers: ["lugar", "sitio"] },
         { question: "at least”, answers: [“por lo menos] },
