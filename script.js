@@ -134,7 +134,7 @@ reg_ir: [
   { question: "They open", answers: ["ellos abren", "abren"] },
 ],
   
-  reg_ir: [
+  l1_4: [
         { question: "Weather", answers: ["tiempo"] },
         { question: "Area, zone", answers: ["área", "zona", "area"] },
         { question: "Home", answers: ["hogar"] },
