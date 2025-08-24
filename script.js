@@ -17,7 +17,6 @@ reg_inf: [
   { question: "to need", answers: ["necesitar"] },
   { question: "to walk", answers: ["caminar"] },
   { question: "to buy", answers: ["comprar"] },
-
   // --- ER VERBS ---
   { question: "to eat", answers: ["comer"] },
   { question: "to learn", answers: ["aprender"] },
@@ -29,7 +28,6 @@ reg_inf: [
   { question: "to understand", answers: ["comprender"] },
   { question: "to read", answers: ["leer"] },
   { question: "to sweep", answers: ["barrer"] },
-
   // --- IR VERBS ---
   { question: "to live", answers: ["vivir"] },
   { question: "to write", answers: ["escribir"] },
@@ -104,7 +102,7 @@ reg_er: [
   { question: "They drink", answers: ["ellos beben", "beben"] },
 ],
 
-// --- REGULAR -IR PRESENT (vivir, escribir, abrir) ---
+// --- REGULAR -IR PRESENT (vivir, escribir, abrir)
 reg_ir: [
   // VIVIR
   { question: "I live", answers: ["yo vivo", "vivo"] },
@@ -134,28 +132,26 @@ reg_ir: [
   { question: "They open", answers: ["ellos abren", "abren"] },
 ],
   
-  l1_4: [
-        { question: "Weather", answers: ["tiempo"] },
-        { question: "Area, zone", answers: ["área", "zona", "area"] },
-        { question: "Home", answers: ["hogar"] },
-        { question: "Bond", answers: ["vínculo"},
-        { question: "finances", answers: ["finanzas"] },
-        { question: "partner", answers: ["pareja"] },
-        { question: "relationship", answers: ["relación"] },
-        { question: "to break up", answers: ["romper"] },
-        { question: "still (time)", answers: ["todavía", "aún", "todavia", "aun"] },
-        { question: "place", answers: ["lugar", "sitio"] },
-        { question: "at least”, answers: [“por lo menos] },
-        { question: "the usual”, answers: [“lo normal”] },
-        { question: "important", answers: ["importante"] },
-        { question: "responisibility", answers: ["responsabilidad"] },
-        { question: "shelter", answers: ["refugio"] },
-        { question: "empty", answers: ["vacío", "vacía"] },
-        { question: "when", answers: ["cuando", "cuándo"] },
-        { question: "wide", answers: ["amplio", "amplia"] },
+l1_4: [
+    { question: "Weather", answers: ["tiempo"] },
+    { question: "Area, zone", answers: ["área", "zona", "area"] },
+    { question: "Home", answers: ["hogar"] },
+    { question: "Bond", answers: ["vínculo"] },
+    { question: "finances", answers: ["finanzas"] },
+    { question: "partner", answers: ["pareja"] },
+    { question: "relationship", answers: ["relación"] },
+    { question: "to break up", answers: ["romper"] },
+    { question: "still (time)", answers: ["todavía", "aún", "todavia", "aun"] },
+    { question: "place", answers: ["lugar", "sitio"] },
+    { question: "at least", answers: ["por lo menos"] },
+    { question: "the usual", answers: ["lo normal"] },
+    { question: "important", answers: ["importante"] },
+    { question: "responsibility", answers: ["responsabilidad"] },
+    { question: "shelter", answers: ["refugio"] },
+    { question: "empty", answers: ["vacío", "vacía"] },
+    { question: "when", answers: ["cuando", "cuándo"] },
+    { question: "wide", answers: ["amplio", "amplia"] },
 ],
-
-
 };
 
 // ===========================
@@ -193,6 +189,7 @@ function startTopic(key, customQuestions) {
   currentQuestion = 0;
   score = 0;
   showSelect(false);
+
   setResult('');
   loadQuestion();
 }
@@ -290,7 +287,6 @@ function loadQuestion() {
   }
 }
 
-// Check answer with immediate correction + try-correct flow
 function checkInputAnswer(inputValue, correctAnswers, optionsContainer, inputElem, submitBtn) {
   const normalized = inputValue.trim().toLowerCase();
   if (correctAnswers.some(ans => normalized === ans.toLowerCase())) {
